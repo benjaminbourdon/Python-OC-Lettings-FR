@@ -1,3 +1,20 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Letting
+
+
+# Aenean leo magna, vestibulum et tincidunt fermentum, consectetur quis velit.
+def index(request):
+    lettings_list = Letting.objects.all()
+    context = {'lettings_list': lettings_list}
+    return render(request, 'lettings/index.html', context)
+
+
+# Cras ultricies dignissim purus, vitae hendrerit ex varius non. In accumsan porta
+def letting(request, letting_id):
+    letting = Letting.objects.get(id=letting_id)
+    context = {
+        'title': letting.title,
+        'address': letting.address,
+    }
+    return render(request, 'lettings/letting.html', context)
