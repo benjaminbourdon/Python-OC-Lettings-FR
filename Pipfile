@@ -6,9 +6,10 @@ name = "pypi"
 [packages]
 django = "==3.0"
 flake8 = "==3.7.0"
-pytest-django = "==3.9.0"
 
 [dev-packages]
+pytest-django = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.11"
