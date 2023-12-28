@@ -1,2 +1,3 @@
 [run]
-omit = tests*.py, conftest.py
+omit = tests*.py, conftest.py, */migrations/*
+branch = True
