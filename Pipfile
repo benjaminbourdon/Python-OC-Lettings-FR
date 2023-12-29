@@ -5,13 +5,13 @@ name = "pypi"
 
 [packages]
 django = "==3.0"
-flake8 = "==3.7.0"
 sentry-sdk = {extras = ["django"], version = "*"}
 python-dotenv = "*"
 
 [dev-packages]
 pytest-django = "*"
 pytest-cov = "*"
+flake8 = "*"
 
 [requires]
 python_version = "3.11"
