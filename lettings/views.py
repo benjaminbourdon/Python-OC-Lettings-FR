@@ -1,3 +1,5 @@
+import logging
+
 from django.shortcuts import render
 
 from .models import Letting
@@ -26,7 +28,14 @@ def index(request):
 # Mauris condimentum auctor elementum. Donec quis nisi ligula.
 # Integer vehicula tincidunt enim, ac lacinia augue pulvinar sit amet.
 def letting(request, letting_id):
-    letting = Letting.objects.get(id=letting_id)
+    try:
+        letting = Letting.objects.get(id=letting_id)
+    except Letting.DoesNotExist as e:
+        logging.error(
+            "Tried to access a non-existant letting.", extra={"letting_id": letting_id}
+        )
+        raise e
+
     context = {
         "title": letting.title,
         "address": letting.address,

@@ -1,3 +1,6 @@
+import logging
+
+from django.http import HttpResponseServerError
 from django.shortcuts import render
 
 
@@ -11,4 +14,9 @@ from django.shortcuts import render
 # Nullam elementum urna nisi, pellentesque iaculis enim cursus in.
 # Praesent volutpat porttitor magna, non finibus neque cursus id.
 def index(request):
-    return render(request, 'index.html')
+    return render(request, "index.html")
+
+
+def trigger_error(request):
+    logging.error("This is a volontary error.")
+    return HttpResponseServerError()
