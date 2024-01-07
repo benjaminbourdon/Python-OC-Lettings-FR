@@ -38,14 +38,18 @@ jobs:
       - image: cimg/python:3.12.1
     steps:
       - checkout
+      - run: 
+          name: Upgrade pip and install libs
+          command: |
+            pip install --upgrade pip
+            pip install pytest
+            pip install flake8
       # python manage.py makemigrations
       # python manage.py migrate
       # python manage.py check --deploy
       - run: 
           name: Verify linting
-          command: |
-            pip install flake8
-            flake8 --max-line-length=127
+          command: flake8 --max-line-length=127
       - run: 
           name: Testing
           command: pytest
