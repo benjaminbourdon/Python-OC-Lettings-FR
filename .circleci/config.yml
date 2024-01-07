@@ -41,9 +41,13 @@ jobs:
       - image: cimg/python:3.12.1
     steps:
       - checkout
+      - python/install-packages:
+          args: flake8
+          pkg-manager: pipenv
       - run:
           name: Verify linting
-          command: flake8 --max-line-length=127
+          command: |
+            pipenv run flake8 --max-line-length=127
   build:
     docker:
       - image: cimg/python:3.12.1
