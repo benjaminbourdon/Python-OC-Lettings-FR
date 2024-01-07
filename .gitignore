@@ -2,5 +2,6 @@
 *.pyc
 venv
 .coverage
+.coveragerc
 .vscode
-.env
+.env*
