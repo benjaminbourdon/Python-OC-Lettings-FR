@@ -8,23 +8,22 @@ orbs:
 workflows:
   build-deploy:
     jobs:
-      - linting
-      - python/test:
-          requires:
-            - linting
-          args: "--dev"
-          pkg-manager: pipenv
-          test-tool: pytest
+      - compile-and-test
+      # - python/test:
+      #     requires:
+      #       - linting
+      #     args: "--dev"
+      #     pkg-manager: pipenv
+      #     test-tool: pytest
       # couverture > 80%
       - build:
           requires:
-            - python/test
+            - compile-and-test
           filters:
             branches:
               only: main
       - aws-ecr/build_and_push_image:
           requires:
-            - python/test
             - build
           filters:
             branches:
@@ -36,18 +35,22 @@ workflows:
           tag: latest
 
 jobs:
-  linting:
+  compile-and-test:
     docker:
       - image: cimg/python:3.11
     steps:
       - checkout
       - python/install-packages:
-          args: flake8
           pkg-manager: pipenv
+          args: "--dev"
       - run:
           name: Verify linting
           command: |
             pipenv run flake8 --max-line-length=127
+      - run:
+          name: Testing
+          command: |
+            pipenv run pytest
   build:
     docker:
       - image: cimg/python:3.11
