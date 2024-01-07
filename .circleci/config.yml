@@ -8,7 +8,9 @@ orbs:
 workflows:
   build-deploy:
     jobs:
-      - compile-and-test
+      - compile-and-test:
+          context:
+            - oc-letting-django
       # - python/test:
       #     requires:
       #       - linting
