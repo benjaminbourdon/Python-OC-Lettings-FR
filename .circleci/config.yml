@@ -1,0 +1,75 @@
+version: 2.1
+
+orbs:
+  # aws-s3: circleci/aws-s3@3.1.1 # use the AWS S3 orb in your configuration
+  aws-ecr: circleci/aws-ecr@9.0.1 # Use the AWS ECR orb in your configuration
+  aws-cli: circleci/aws-cli@4.1.2
+
+workflows: 
+  build-deploy: 
+    jobs:
+      - compile-and-test
+      - build
+          requires:
+            - compile-and-test
+          filters:
+            branches:
+              only: main 
+      # - deploy:
+      - aws-ecr/build-and-push-image: 
+          requires:
+            - compile-and-test
+            # - build 
+          filters:
+            branches:
+              only: main 
+          auth:
+            - aws-cli/setup:
+                # profile: AWSEC2ForOcLetting
+                role_arn: arn:aws:iam::236776589655:role/AWSEC2ForOcLetting
+          # dockerfile: Dockerfile
+          # profile-name: <my-profile-name>
+          repo: 236776589655.dkr.ecr.eu-west-3.amazonaws.com/oc-letting
+          tag: latest
+
+jobs: 
+  compile-and-test:
+    docker:
+      - image: cimg/python:3.12.1
+    steps:
+      - checkout
+      # python manage.py makemigrations
+      # python manage.py migrate
+      # python manage.py check --deploy
+      - run: |
+        pip install flake8
+        flake8 martor_demo/ --max-line-length=127
+      - run: pytest
+      # couverture > 80%
+  build:
+    docker: 
+      - image: cimg/python:3.12.1
+        auth:
+            username: $DOCKER_USERNAME  
+            password: $DOCKERHUB_PASSWORD
+    resource_class: xlarge
+    steps:
+      - checkout 
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: |
+          TAG=$CIRCLE_SHA1
+          docker build -t BenjaminB2/oc-lettings:$TAG .
+          echo $DOCKERHUB_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker push BenjaminB2/oc-lettings:$TAG
+  # deploy:
+  #   docker: 
+  #     - image: cimg/aws:2023.12
+  #   steps:
+  #     - checkout
+      # - aws-s3/sync:
+      #     from: .
+      #     to: 's3://my-s3-bucket-name/prefix' # Need to be changed
+      #     arguments: | 
+      #       --acl public-read \
+      #       --cache-control "max-age=86400"
