@@ -8,8 +8,8 @@ orbs:
 workflows: 
   build-deploy: 
     jobs:
-      - compile-and-test
-      - build
+      - compile-and-test:
+      - build:
           requires:
             - compile-and-test
           filters:
