@@ -11,13 +11,6 @@ workflows:
       - compile-and-test:
           context:
             - oc-letting-django
-      # - python/test:
-      #     requires:
-      #       - linting
-      #     args: "--dev"
-      #     pkg-manager: pipenv
-      #     test-tool: pytest
-      # couverture > 80%
       - build:
           requires:
             - compile-and-test
@@ -59,7 +52,6 @@ jobs:
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKERHUB_PASSWORD
-    resource_class: xlarge
     steps:
       - checkout
       - setup_remote_docker:
