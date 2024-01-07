@@ -1,68 +1,58 @@
 version: 2.1
 
 orbs:
-  # aws-s3: circleci/aws-s3@3.1.1 # use the AWS S3 orb in your configuration
-  aws-ecr: circleci/aws-ecr@9.0.1 # Use the AWS ECR orb in your configuration
+  aws-ecr: circleci/aws-ecr@9.0.1
   aws-cli: circleci/aws-cli@4.1.2
+  python: circleci/python@2.1.1
 
-workflows: 
-  build-deploy: 
+workflows:
+  build-deploy:
     jobs:
-      - compile-and-test
+      - linting
+      - python/test:
+          requires:
+            - linting
+          args: "--dev"
+          pkg-manager: pipenv
+          test-tool: pytest
+      # couverture > 80%
       - build:
           requires:
-            - compile-and-test
+            - python/test
           filters:
             branches:
-              only: main 
-      # - deploy:
-      - aws-ecr/build_and_push_image: 
+              only: main
+      - aws-ecr/build_and_push_image:
           requires:
-            - compile-and-test
-            # - build 
+            - python/test
+            - build
           filters:
             branches:
-              only: main 
+              only: main
           auth:
             - aws-cli/setup:
-                # profile: AWSEC2ForOcLetting
                 role_arn: arn:aws:iam::236776589655:role/AWSEC2ForOcLetting
-          # dockerfile: Dockerfile
-          # profile-name: <my-profile-name>
           repo: 236776589655.dkr.ecr.eu-west-3.amazonaws.com/oc-letting
           tag: latest
 
-jobs: 
-  compile-and-test:
+jobs:
+  linting:
     docker:
       - image: cimg/python:3.12.1
     steps:
       - checkout
-      - run: 
-          name: Upgrade pip and install libs
-          command: |
-            pip install --upgrade pip
-            pip install pytest
-            pip install flake8
-      # python manage.py makemigrations
-      # python manage.py migrate
-      # python manage.py check --deploy
-      - run: 
+      - run:
           name: Verify linting
           command: flake8 --max-line-length=127
-      - run: 
-          name: Testing
-          command: pytest
-      # couverture > 80%
   build:
-    docker: 
+    docker:
       - image: cimg/python:3.12.1
         auth:
-            username: $DOCKER_USERNAME  
-            password: $DOCKERHUB_PASSWORD
+          username: $DOCKER_USERNAME
+          password: $DOCKERHUB_PASSWORD
     resource_class: xlarge
     steps:
-      - checkout 
+      - checkout
       - setup_remote_docker:
           docker_layer_caching: true
       - run: |
@@ -70,14 +60,3 @@ jobs:
           docker build -t BenjaminB2/oc-lettings:$TAG .
           echo $DOCKERHUB_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker push BenjaminB2/oc-lettings:$TAG
-  # deploy:
-  #   docker: 
-  #     - image: cimg/aws:2023.12
-  #   steps:
-  #     - checkout
-      # - aws-s3/sync:
-      #     from: .
-      #     to: 's3://my-s3-bucket-name/prefix' # Need to be changed
-      #     arguments: | 
-      #       --acl public-read \
-      #       --cache-control "max-age=86400"
