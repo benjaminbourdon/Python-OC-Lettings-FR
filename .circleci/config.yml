@@ -23,13 +23,13 @@ workflows:
             - compile-and-test
           filters:
             branches:
-              only: main
+              only: master
       - aws-ecr/build_and_push_image:
           requires:
             - build
           filters:
             branches:
-              only: main
+              only: master
           auth:
             - aws-cli/setup:
                 role_arn: arn:aws:iam::236776589655:role/AWSEC2ForOcLetting
