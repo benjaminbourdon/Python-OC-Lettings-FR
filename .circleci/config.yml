@@ -8,7 +8,7 @@ orbs:
 workflows: 
   build-deploy: 
     jobs:
-      - compile-and-test:
+      - compile-and-test
       - build:
           requires:
             - compile-and-test
@@ -16,7 +16,7 @@ workflows:
             branches:
               only: main 
       # - deploy:
-      - aws-ecr/build-and-push-image: 
+      - aws-ecr/build_and_push_image: 
           requires:
             - compile-and-test
             # - build 
@@ -41,10 +41,14 @@ jobs:
       # python manage.py makemigrations
       # python manage.py migrate
       # python manage.py check --deploy
-      - run: |
-        pip install flake8
-        flake8 martor_demo/ --max-line-length=127
-      - run: pytest
+      - run: 
+          name: Verify linting
+          command: |
+            pip install flake8
+            flake8 martor_demo/ --max-line-length=127
+      - run: 
+          name: Testing
+          command: pytest
       # couverture > 80%
   build:
     docker: 
