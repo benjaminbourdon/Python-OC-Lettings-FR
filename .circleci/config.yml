@@ -37,8 +37,8 @@ workflows:
 
 jobs:
   linting:
-    executor: python/default
-      - tag: 3.11
+    docker:
+      - image: cimg/python:3.11
     steps:
       - checkout
       - python/install-packages:
