@@ -26,7 +26,7 @@ workflows:
           auth:
             - aws-cli/setup:
                 role_arn: arn:aws:iam::236776589655:role/AWSEC2ForOcLetting
-          repo: 236776589655.dkr.ecr.eu-west-3.amazonaws.com/oc-letting
+          repo: oc-letting
           tag: latest
           context:
               - aws
