@@ -58,6 +58,6 @@ jobs:
           docker_layer_caching: true
       - run: |
           TAG=$CIRCLE_SHA1
-          docker build -t oc-lettings:$TAG .
+          docker build -t benjaminb2/oc-lettings:$TAG .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker push benjaminb2/oc-lettings:$TAG
