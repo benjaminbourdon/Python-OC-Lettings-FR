@@ -42,8 +42,9 @@ RUN mkdir /app/staticfiles
 RUN chown -R appuser:appuser /app
 
 # Prepare executable entrypoint
-COPY docker-entrypoint.sh .
-RUN chmod +x docker-entrypoint.sh
+RUN mkdir /app/script
+COPY docker-entrypoint.sh /app/script
+RUN chmod ugo+x /app/script/docker-entrypoint.sh
 
 # Switch to the non-privileged user to run the application.
 USER appuser
@@ -56,4 +57,4 @@ EXPOSE 8000
 
 # Run the application.
 # CMD python manage.py runserver 0.0.0.0:8000
-CMD ["./docker-entrypoint.sh"]
+ENTRYPOINT ["/app/script/docker-entrypoint.sh"]
