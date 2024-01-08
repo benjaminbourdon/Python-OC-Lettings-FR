@@ -36,21 +36,21 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     python -m pip install -r requirements.txt
 
-# Allow non-privilege user to access to /app dir.
-# Needed to collect static files at
-RUN mkdir /app/staticfiles
-RUN chown -R appuser:appuser /app
-
 # Prepare executable entrypoint
 RUN mkdir /app/script
 COPY docker-entrypoint.sh /app/script
 RUN chmod ugo+x /app/script/docker-entrypoint.sh
 
-# Switch to the non-privileged user to run the application.
-USER appuser
-
 # Copy the source code into the container.
 COPY . .
+
+# Allow non-privilege user to access to /app dir.
+# Needed to collect static files at
+RUN mkdir /app/staticfiles
+RUN chown -R appuser:appuser /app
+
+# Switch to the non-privileged user to run the application.
+USER appuser
 
 # Expose the port that the application listens on.
 EXPOSE 8000
