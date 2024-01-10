@@ -1,5 +1,6 @@
-import pytest
+"""Configuration de la suite de teste utilisant Pytest."""
 
+import pytest
 from django.test import Client
 
 

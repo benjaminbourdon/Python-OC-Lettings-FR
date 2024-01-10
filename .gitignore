@@ -5,3 +5,5 @@ venv
 .coveragerc
 .vscode
 .env*
+.ssh
+.pytest_cache
