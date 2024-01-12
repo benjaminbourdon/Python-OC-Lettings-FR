@@ -35,6 +35,34 @@
             
   <section id="demarrage-rapide">
 <h1>Démarrage rapide<a class="headerlink" href="#demarrage-rapide" title="Link to this heading">¶</a></h1>
+<section id="localement">
+<h2>Localement<a class="headerlink" href="#localement" title="Link to this heading">¶</a></h2>
+<p>Si l’application est disponible localement,</p>
+<ol class="arabic">
+<li><p>Executez le serveur de développement : <em>python manage.py runserver</em></p></li>
+<li><p>Accédez à l’URL &lt;<a class="reference external" href="http://localhost:8000/">http://localhost:8000/</a>&gt; dans votre navigateur</p></li>
+<li><dl>
+<dt>Pour accéder à l’espace admin, vous devez vous rendre à l’adresse<span class="classifier">&lt;<a class="reference external" href="http://localhost:8000/admin">http://localhost:8000/admin</a>&gt;</span></dt><dd><ul class="simple">
+<li><p>En cas de nouvelle base de données, créez un nouveau super-utilisateur avec la commande :</p></li>
+</ul>
+<p><em>python manage.py createsuperuser</em></p>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="avec-docker">
+<h2>Avec Docker<a class="headerlink" href="#avec-docker" title="Link to this heading">¶</a></h2>
+<p>Une fois l’image Docker obtenu sur votre machine,
+soit en l’ayant <em>buildé</em> depuis le code source,
+soit en l’ayant <em>pullé</em> depuis Docker Hub,
+vous pouvez lancer un contenaire</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8000</span><span class="p">:</span><span class="mi">8000</span> <span class="o">--</span><span class="n">env</span><span class="o">-</span><span class="n">file</span> <span class="o">./.</span><span class="n">env</span><span class="o">.</span><span class="n">prod</span> <span class="o">&lt;</span><span class="n">nom</span><span class="o">-</span><span class="n">image</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">tag</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>En supposant que vos variables d’environnement sans dans le fichier <em>.env.prod</em> .</p>
+<p>L’application est ensuite accessible localement sur le port 8000.</p>
+</section>
 </section>
 
 
@@ -56,7 +84,11 @@
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Démarrage rapide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Démarrage rapide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#localement">Localement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#avec-docker">Avec Docker</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dépendances</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deploiement.html">Déploiement</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>

@@ -75,3 +75,7 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+### Deploiement
+
+Pour plus d'information sur la mise en ligne du site, voir la documentation `https://oc-lettings-benjamin.readthedocs.io/fr/latest/`
