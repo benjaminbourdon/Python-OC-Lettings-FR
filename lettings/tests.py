@@ -1,3 +1,5 @@
+"""Tests liés au module Lettings."""
+
 import pytest
 from django.test import Client
 from django.urls import resolve, reverse
@@ -8,6 +10,8 @@ from .models import Address, Letting
 
 @pytest.mark.django_db
 def test_lettings_models():
+    """Teste les modèles du module Lettings."""
+
     adress = Address.objects.create(
         number=2, street="main street", city="megalopole", zip_code=10000
     )
@@ -20,6 +24,8 @@ def test_lettings_models():
 
 
 def test_index_lettings_url():
+    """Teste l'url de l'index de la partie Lettings."""
+
     path = reverse("lettings_index")
 
     assert path == "/lettings/"
@@ -28,6 +34,8 @@ def test_index_lettings_url():
 
 @pytest.mark.django_db
 def test_index_lettings_view_no_letting(client: Client):
+    """Teste le rendu de l'index de la partie Lettings en l'absence de données."""
+
     path = reverse("lettings_index")
     response = client.get(path)
 
@@ -39,6 +47,8 @@ def test_index_lettings_view_no_letting(client: Client):
 
 @pytest.mark.django_db
 def test_index_lettings_view_with_letting(client: Client):
+    """Teste le rendu de l'index de la partie Lettings en présence de données."""
+
     letting_title = "Big House"
     adress = Address.objects.create(
         number=2, street="main street", city="megalopole", zip_code=10000
@@ -59,6 +69,8 @@ def test_index_lettings_view_with_letting(client: Client):
 
 @pytest.mark.django_db
 def test_display_lettings_url():
+    """Teste l'url de la page d'une location."""
+
     letting_title = "Big House"
     adress = Address.objects.create(
         number=2, street="main street", city="megalopole", zip_code=10000
@@ -72,6 +84,8 @@ def test_display_lettings_url():
 
 @pytest.mark.django_db
 def test_display_lettings_view(client: Client):
+    """Teste le rendu de la page d'une location."""
+
     letting_title = "Big House"
     adress = Address.objects.create(
         number=2, street="main street", city="megalopole", zip_code=10000

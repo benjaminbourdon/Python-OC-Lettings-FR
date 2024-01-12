@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class OCLettingsSiteConfig(AppConfig):
-    name = 'oc_lettings_site'
+    """Classe de configuration de l'application."""
+
+    name = "oc_lettings_site"

@@ -1,3 +1,5 @@
+"""Source du router de l'application."""
+
 from django.contrib import admin
 from django.urls import include, path
 

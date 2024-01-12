@@ -1,6 +1,7 @@
+"""Views"""
 import logging
 
-from django.http import HttpResponseServerError
+from django.http import HttpRequest, HttpResponse, HttpResponseServerError
 from django.shortcuts import render
 
 
@@ -13,10 +14,26 @@ from django.shortcuts import render
 # Aliquam vitae erat ac orci placerat luctus.
 # Nullam elementum urna nisi, pellentesque iaculis enim cursus in.
 # Praesent volutpat porttitor magna, non finibus neque cursus id.
-def index(request):
+def index(request: HttpRequest) -> HttpResponse:
+    """
+    Fonction vue pour la page d'accueil du site.
+
+    :param request: Requête du client
+    :type request: HttpRequest
+    :return: Réponse http
+    :rtype: HttpResponse
+    """
     return render(request, "index.html")
 
 
-def trigger_error(request):
+def trigger_error(request: HttpRequest) -> HttpResponse:
+    """
+    Fonction vue qui loggue une erreur à des fins de test.
+
+    :param request: Requête du client
+    :type request: HttpRequest
+    :return: Réponse "Server Error"
+    :rtype: HttpResponse
+    """
     logging.error("This is a volontary error.")
     return HttpResponseServerError()

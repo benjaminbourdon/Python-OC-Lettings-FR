@@ -3,8 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+<<<<<<< HEAD
 Welcome to OC Lettings by Benjamin's documentation!
 ===================================================
+=======
+Documentation du projet OC Lettings
+===================================
+>>>>>>> Developpement
 
 .. toctree::
    :maxdepth: 2
@@ -23,7 +28,13 @@ Contents
 
 Description
 ===========
+<<<<<<< HEAD
 Description
+=======
+Site web d'Orange County Lettings.
+
+Ce site est développé sous Django avec une base de donnée SQLite.
+>>>>>>> Developpement
 
 Indices and tables
 ==================

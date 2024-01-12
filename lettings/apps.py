@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class LettingsConfig(AppConfig):
-    name = 'lettings'
+    """Classe de configuration de l'application Lettings."""
+
+    name = "lettings"

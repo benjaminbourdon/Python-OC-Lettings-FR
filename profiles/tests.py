@@ -1,3 +1,5 @@
+"""Tests liés au module Profiles."""
+
 import pytest
 from django.contrib.auth.models import User
 from django.test import Client
@@ -9,6 +11,8 @@ from .models import Profile
 
 @pytest.mark.django_db
 def test_profile_model():
+    """Teste du modèle du module Profile."""
+
     user = User.objects.create(username="Coco")
     profile = Profile.objects.create(user=user, favorite_city="Paris")
     expected_adress = "Coco"
@@ -16,6 +20,8 @@ def test_profile_model():
 
 
 def test_index_profiles_url():
+    """Teste l'url de l'index du module Profiles"""
+
     path = reverse("profiles_index")
 
     assert path == "/profiles/"
@@ -24,6 +30,8 @@ def test_index_profiles_url():
 
 @pytest.mark.django_db
 def test_index_profiles_view_no_profile(client: Client):
+    """Teste le rendu de l'index de l'index du module Profiles en l'absence de données."""
+
     path = reverse("profiles_index")
     response = client.get(path)
 
@@ -35,6 +43,8 @@ def test_index_profiles_view_no_profile(client: Client):
 
 @pytest.mark.django_db
 def test_index_profiles_view_with_profile(client: Client):
+    """Teste le rendu de l'index de l'index du module Profiles en présence de données."""
+
     username = "Coco"
     user = User.objects.create(username=username)
     Profile.objects.create(user=user, favorite_city="Paris")
@@ -53,6 +63,8 @@ def test_index_profiles_view_with_profile(client: Client):
 
 @pytest.mark.django_db
 def test_display_profiles_url():
+    """Teste l'url d'une page de présentation d'un profile."""
+
     username = "Coco"
     user = User.objects.create(username=username)
     Profile.objects.create(user=user, favorite_city="Paris")
@@ -64,6 +76,8 @@ def test_display_profiles_url():
 
 @pytest.mark.django_db
 def test_display_profiles_view(client: Client):
+    """Teste le rendu d'une page de présentation d'un profile."""
+
     username = "Coco"
     city = "Paris"
     user = User.objects.create(username=username)
