@@ -2,6 +2,7 @@ Usage
 =====
 
 Depuis la page d'accueil,
+
 - Consulter les profils : cliquez sur Profiles
 - Consulter le détail d’un profil : cliquez sur un profil pour accéder à son détail
 - Consulter les locations : cliquez sur Lettings

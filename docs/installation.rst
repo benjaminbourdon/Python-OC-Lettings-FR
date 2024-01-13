@@ -16,22 +16,27 @@ Variables d'environnement
 Installation locale
 -------------------
 
-#. Clonez ce dépôt sur votre machine locale :
-    git clone https://github.com/benjaminbourdon/Python-OC-Lettings-FR.git
+#. Clonez ce dépôt sur votre machine locale.
+    Utilisez la commande suivante ::
+        git clone https://github.com/benjaminbourdon/Python-OC-Lettings-FR.git
 #. Accédez au répertoire du projet. 
 #. Créez un environnement virtuel.  
     La documentation recommande *pipenv*. 
     Si *pipenv* est déjà installé sur votre système :: 
         pipenv install 
+
     Alternativement, avec *venv* ::
         python3 -m venv env
-#. Activez l'environnement virtuel :
+
+#. Activez l'environnement virtuel.
+    Selon le gestionnaire d'environnement ::
     + Avec *pipenv* : *pipenv shell*
     + Avec *venv* : 
         + Sur macOS et Linux : *source env/bin/activate*
         + Sur Windows avec PowerShell : *env\Scripts\Activate.ps1*
 
-#. Si vous avez choisi *venv*, installez les dépendances manuellement ::
+#. Si vous avez choisi *venv*, 
+    installez les dépendances manuellement ::
         pip install -r requirements.txt  
     Avec pipenv, les dépendances ont automatiquement été installées lors de la création de l'environnement virtuel. 
     Vous pouvez le vérifier avec : *pipenv graph*
@@ -39,7 +44,8 @@ Installation locale
     Le dépôt inclut un fichier *db.sqlite3* à des fins de test.
     Il est recommandé de supprimer ce fichier et de créer la base de données (vide) avec ::
         python manage.py migrate
-#. Lancez le serveur de développement :
+#. Lancez le serveur de développement.
+    Si vous avez activé l'environnement virtuel, la commande est ::
     python manage.py runserver
 
 Installation avec Docker

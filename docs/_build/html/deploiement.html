@@ -35,6 +35,76 @@
             
   <section id="deploiement">
 <h1>Déploiement<a class="headerlink" href="#deploiement" title="Link to this heading">¶</a></h1>
+<section id="pipeline-circle-cicd">
+<h2>Pipeline Circle CICD<a class="headerlink" href="#pipeline-circle-cicd" title="Link to this heading">¶</a></h2>
+<p>Pour son bon fonctionnement, la pipeline CICD configurée sous CircleCI nécessite de
+connaître les informations liées aux services Docker Hub et AWS.
+En particulier, l’accès AWS utilisé doit avoir accès au service <em>Elastic Container Registry</em>.
+Pour cela, la création d’un contexte nommé <strong>aws</strong> au sein de votre organisation sur Circle CI.</p>
+<p>Enfin, voici les variables d’environnement à fournir sur CircleCI :
+Ces variables peuvent être définies au niveau du prochain ou encore du contexte selon votre usage.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Variables d’environnement</span><a class="headerlink" href="#id1" title="Link to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Nom</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AWS_ACCESS_KEY_ID</p></td>
+<td><p>Clé d’identification AWS</p></td>
+</tr>
+<tr class="row-odd"><td><p>AWS_ACCOUNT_ID</p></td>
+<td><p>Numéro d’identification du compte AWS</p></td>
+</tr>
+<tr class="row-even"><td><p>AWS_DEFAULT_REGION</p></td>
+<td><p>Région utilisée par défaut par le compte AWS</p></td>
+</tr>
+<tr class="row-odd"><td><p>AWS_SECRET_ACCESS_KEY</p></td>
+<td><p>Clé secrète d’accès AWS</p></td>
+</tr>
+<tr class="row-even"><td><p>DOCKER_PASSWORD</p></td>
+<td><p>Mot de passe Docker Hub</p></td>
+</tr>
+<tr class="row-odd"><td><p>DOCKER_USERNAME</p></td>
+<td><p>Nom d’utilisateur Docker Hub</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="amazon-elastic-container-registry-ecr">
+<h2>Amazon Elastic Container Registry (ECR)<a class="headerlink" href="#amazon-elastic-container-registry-ecr" title="Link to this heading">¶</a></h2>
+<p>Le déploiement repose sur la création d’une image de l’application sur AWS ECR.
+Cette image peut ensuite être utilisée pour la mise en ligne via le service App Runner d’AWS.</p>
+<p>Il vous faut donc définir les variables d’environnement suivantes au sein d’App Runner :</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Variables d’environnement</span><a class="headerlink" href="#id2" title="Link to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Nom</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DJANGO_ALLOWED_HOSTS</p></td>
+<td><p>Valeur de la variable du même nom de Django.</p></td>
+</tr>
+<tr class="row-odd"><td><p>SENTRY_DSN</p></td>
+<td><p>Clé API de Sentry</p></td>
+</tr>
+<tr class="row-even"><td><p>SECRET_KEY</p></td>
+<td><p>Clé secrète du setup Django</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 
 
@@ -58,7 +128,11 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Démarrage rapide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dépendances</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Déploiement</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Déploiement</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline-circle-cicd">Pipeline Circle CICD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#amazon-elastic-container-registry-ecr">Amazon Elastic Container Registry (ECR)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 </ul>

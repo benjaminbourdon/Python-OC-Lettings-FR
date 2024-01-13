@@ -15,11 +15,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Démarrage rapide" href="quickstart.html" />
-<<<<<<< HEAD
-    <link rel="prev" title="Welcome to OC Lettings by Benjamin’s documentation!" href="index.html" />
-=======
     <link rel="prev" title="Documentation du projet OC Lettings" href="index.html" />
->>>>>>> Developpement
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -39,8 +35,6 @@
             
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
-<<<<<<< HEAD
-=======
 <section id="prerequis">
 <h2>Prérequis<a class="headerlink" href="#prerequis" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -57,7 +51,10 @@
 <h2>Installation locale<a class="headerlink" href="#installation-locale" title="Link to this heading">¶</a></h2>
 <ol class="arabic">
 <li><dl class="simple">
-<dt>Clonez ce dépôt sur votre machine locale :</dt><dd><p>git clone <a class="reference external" href="https://github.com/benjaminbourdon/Python-OC-Lettings-FR.git">https://github.com/benjaminbourdon/Python-OC-Lettings-FR.git</a></p>
+<dt>Clonez ce dépôt sur votre machine locale.</dt><dd><dl class="simple">
+<dt>Utilisez la commande suivante ::</dt><dd><p>git clone <a class="reference external" href="https://github.com/benjaminbourdon/Python-OC-Lettings-FR.git">https://github.com/benjaminbourdon/Python-OC-Lettings-FR.git</a></p>
+</dd>
+</dl>
 </dd>
 </dl>
 </li>
@@ -75,25 +72,24 @@ Si <em>pipenv</em> est déjà installé sur votre système</p>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Activez l’environnement virtuel :</dt><dd><ul class="simple">
-<li><p>Avec <em>pipenv</em> : <em>pipenv shell</em></p></li>
-<li><dl class="simple">
-<dt>Avec <em>venv</em> :</dt><dd><ul>
+<li><dl>
+<dt>Activez l’environnement virtuel.</dt><dd><p>Selon le gestionnaire d’environnement ::
++ Avec <em>pipenv</em> : <em>pipenv shell</em>
++ Avec <em>venv</em> :</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>Sur macOS et Linux : <em>source env/bin/activate</em></p></li>
 <li><p>Sur Windows avec PowerShell : <em>envScriptsActivate.ps1</em></p></li>
 </ul>
-</dd>
-</dl>
-</li>
-</ul>
+</div></blockquote>
 </dd>
 </dl>
 </li>
 <li><dl>
-<dt>Si vous avez choisi <em>venv</em>, installez les dépendances manuellement ::</dt><dd><blockquote>
-<div><p>pip install -r requirements.txt</p>
-</div></blockquote>
+<dt>Si vous avez choisi <em>venv</em>,</dt><dd><dl class="simple">
+<dt>installez les dépendances manuellement ::</dt><dd><p>pip install -r requirements.txt</p>
+</dd>
+</dl>
 <p>Avec pipenv, les dépendances ont automatiquement été installées lors de la création de l’environnement virtuel.
 Vous pouvez le vérifier avec : <em>pipenv graph</em></p>
 </dd>
@@ -109,7 +105,8 @@ Il est recommandé de supprimer ce fichier et de créer la base de données (vid
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Lancez le serveur de développement :</dt><dd><p>python manage.py runserver</p>
+<dt>Lancez le serveur de développement.</dt><dd><p>Si vous avez activé l’environnement virtuel, la commande est ::
+python manage.py runserver</p>
 </dd>
 </dl>
 </li>
@@ -129,7 +126,6 @@ Ou alternativement:</p>
 </div>
 <p>Enfin, la pipeline CICD du projet crée un docker que vous pouvez <em>pull</em> depuis Docker Hub.</p>
 </section>
->>>>>>> Developpement
 </section>
 
 
@@ -150,9 +146,6 @@ Ou alternativement:</p>
 
 <h3>Navigation</h3>
 <ul class="current">
-<<<<<<< HEAD
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
-=======
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#prerequis">Prérequis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#variables-d-environnement">Variables d’environnement</a></li>
@@ -160,7 +153,6 @@ Ou alternativement:</p>
 <li class="toctree-l2"><a class="reference internal" href="#installation-avec-docker">Installation avec Docker</a></li>
 </ul>
 </li>
->>>>>>> Developpement
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Démarrage rapide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dependencies.html">Dépendances</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deploiement.html">Déploiement</a></li>
@@ -172,11 +164,7 @@ Ou alternativement:</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-<<<<<<< HEAD
-      <li>Previous: <a href="index.html" title="Chapitre précédent">Welcome to OC Lettings by Benjamin’s documentation!</a></li>
-=======
       <li>Previous: <a href="index.html" title="Chapitre précédent">Documentation du projet OC Lettings</a></li>
->>>>>>> Developpement
       <li>Next: <a href="quickstart.html" title="Chapitre suivant">Démarrage rapide</a></li>
   </ul></li>
 </ul>
