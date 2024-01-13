@@ -3,13 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-<<<<<<< HEAD
-Welcome to OC Lettings by Benjamin's documentation!
-===================================================
-=======
 Documentation du projet OC Lettings
 ===================================
->>>>>>> Developpement
 
 .. toctree::
    :maxdepth: 2

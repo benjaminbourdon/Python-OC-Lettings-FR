@@ -1,7 +1,4 @@
 Installation
-<<<<<<< HEAD
-============
-=======
 ============
 
 Prérequis
@@ -55,4 +52,3 @@ Vos variables d'environnement doivent alors être disponible dans un fichier *.e
 Ou alternativement::
     docker build -t <nom-image>:<tag> .
 Enfin, la pipeline CICD du projet crée un docker que vous pouvez *pull* depuis Docker Hub.
->>>>>>> Developpement

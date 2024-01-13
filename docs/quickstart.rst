@@ -1,7 +1,4 @@
 Démarrage rapide
-<<<<<<< HEAD
-================
-=======
 ================
 
 Localement
@@ -26,4 +23,3 @@ vous pouvez lancer un contenaire ::
 En supposant que vos variables d'environnement sans dans le fichier *.env.prod* .
 
 L'application est ensuite accessible localement sur le port 8000.
->>>>>>> Developpement

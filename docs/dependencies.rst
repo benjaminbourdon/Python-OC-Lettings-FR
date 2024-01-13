@@ -1,7 +1,4 @@
 Dépendances
-<<<<<<< HEAD
-===========
-=======
 ===========
 
 Au delà de Python version 3.6 ou supérieure, le site s'appuie sur :
@@ -17,4 +14,3 @@ Pour la production, la pipeline CICD repose sur **CircleCI** et **GitHub**.
 Le site est hébergé via AWS.
 
 La documentation est fournie par **sphinx** et **Readthedocs**.
->>>>>>> Developpement
